@@ -5,7 +5,7 @@
 //  Created by 김효성 on 12/21/24.
 //
 
-protocol RegexService: Sendable {
+public protocol RegexService: Sendable {
   /**
    `input String` 이 `pattern Regex` 와 일치하는 경우 ` String?` 을 반환합니다.
    
@@ -21,7 +21,7 @@ protocol RegexService: Sendable {
 public struct RegexHelper: RegexService { }
 
 extension RegexHelper {
-  func wholeMatch(
+  public func wholeMatch(
     input: String,
     of pattern: some RegexComponent<Substring>
   ) -> String? {
