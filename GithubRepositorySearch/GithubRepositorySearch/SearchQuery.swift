@@ -15,8 +15,11 @@ public struct SearchQuery: Sendable {
   /**
    `#/^[a-zA-Z0-9가-힣]+$/#` 정규식에 일치하지 않으면 `nil` 을 반환합니다.
    */
-  public init?(_ rawValue: String) {
-    guard let rawValue = RegexHelper().wholeMatch(
+  public init?(
+    _ rawValue: String,
+    regexService: RegexService = RegexHelper()
+  ) {
+    guard let rawValue = regexService.wholeMatch(
       input: rawValue,
       of: SearchQuery.pattern
     ) else { return nil }

@@ -18,7 +18,9 @@ public protocol RegexService: Sendable {
 	func wholeMatch(input: String, of pattern: some RegexComponent<Substring>) -> String?
 }
 
-public struct RegexHelper: RegexService { }
+public struct RegexHelper: RegexService {
+  public init() { }
+}
 
 extension RegexHelper {
   public func wholeMatch(
