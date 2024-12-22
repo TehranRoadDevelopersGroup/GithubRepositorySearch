@@ -17,11 +17,11 @@ public struct SearchQuery: Sendable {
    */
   public init?(
     _ rawValue: String,
-    regexService: RegexService = RegexHelper()
+    regexService: RegexService = RegexWholeMatchHelper()
   ) {
-    guard let rawValue = regexService.wholeMatch(
+    guard let rawValue = regexService.match(
       input: rawValue,
-      of: SearchQuery.pattern
+      pattern: SearchQuery.pattern
     ) else { return nil }
     self.wrappedValue = rawValue
   }

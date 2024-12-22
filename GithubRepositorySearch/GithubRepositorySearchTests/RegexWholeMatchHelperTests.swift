@@ -1,5 +1,5 @@
 //
-//  RegexServiceTests.swift
+//  RegexWholeMatchHelperTests.swift
 //  GithubRepositorySearchTests
 //
 //  Created by 김효성 on 12/22/24.
@@ -8,17 +8,17 @@
 import Testing
 @testable import GithubRepositorySearch
 
-struct RegexServiceTests {
-  private let regexService: RegexService = RegexHelper()
+struct RegexWholeMatchHelperTests {
+  private let regexService: RegexService = RegexWholeMatchHelper()
   private let searchQueryPattern: some RegexComponent<Substring> = #/^[a-zA-Z0-9가-힣]+$/#
   
   @Test func testWholeMatchWhenKoreanThenInputVaild() async throws {
     let input = "안녕하세요"
     
     let matched = regexService
-      .wholeMatch(
+      .match(
         input: input,
-        of: searchQueryPattern
+        pattern: searchQueryPattern
       )
     
     #expect(input == matched)
@@ -28,9 +28,9 @@ struct RegexServiceTests {
     let input = "abcdef"
     
     let matched = regexService
-      .wholeMatch(
+      .match(
         input: input,
-        of: searchQueryPattern
+        pattern: searchQueryPattern
       )
     
     #expect(input == matched)
@@ -40,9 +40,9 @@ struct RegexServiceTests {
     let input = "123123"
     
     let matched = regexService
-      .wholeMatch(
+      .match(
         input: input,
-        of: searchQueryPattern
+        pattern: searchQueryPattern
       )
     
     #expect(input == matched)
@@ -52,9 +52,9 @@ struct RegexServiceTests {
     let input = "123123abcdef안녕하세요"
     
     let matched = regexService
-      .wholeMatch(
+      .match(
         input: input,
-        of: searchQueryPattern
+        pattern: searchQueryPattern
       )
     
     #expect(input == matched)
@@ -64,9 +64,9 @@ struct RegexServiceTests {
     let input = "안녕ㅎㅏ세요"
     
     let matched = regexService
-      .wholeMatch(
+      .match(
         input: input,
-        of: searchQueryPattern
+        pattern: searchQueryPattern
       )
     
     #expect(matched == nil)
